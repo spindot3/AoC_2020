@@ -96,7 +96,7 @@ def print_grid(grid, print_decoration=True, w=1):
         row = []
         for x in range(min_x, max_x):
             entry = grid.get((x, y))
-            if entry:
+            if entry is not None:
                 row.append(entry * w)
             else:
                 row.append(' ' * w)
@@ -132,7 +132,7 @@ def determine_grid_path(start_pos, grid, target=None, wall='#'):
         for dx, dy in dxy:
             nx, ny = cx + dx, cy + dy
             next_grid_entry = grid.get((nx, ny))
-            if next_grid_entry and next_grid_entry != wall and (nx, ny) not in visited:
+            if next_grid_entry is not None and next_grid_entry != wall and (nx, ny) not in visited:
                 heapq.heappush(to_visit, (dist + 1, nx, ny, cx, cy))
     return grid_path
 
